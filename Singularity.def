@@ -1,0 +1,19 @@
+BootStrap: docker  
+From: ubuntu:22.04  
+
+%post  
+    # Install system dependencies  
+    apt-get update && apt-get install -y \  
+        python3 python3-pip \  
+        gffread \  
+        && apt-get clean  
+
+    # Install Python packages  
+    pip3 install --no-cache-dir pandas  
+
+%environment  
+    export PATH="/usr/local/bin:$PATH"  
+    export PYTHONPATH="/usr/local/lib/python3.10/site-packages:$PYTHONPATH"  
+
+%runscript  
+    exec "$@"  
