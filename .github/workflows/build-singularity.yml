@@ -26,7 +26,7 @@ jobs:
       # Build the Singularity container
       - name: Build Singularity image
         run: |
-          singularity build my-container.sif singularity.def
+          singularity build --fakeroot my-container.sif singularity.def
 
       # Upload the container as an artifact
       - name: Upload Singularity image
