@@ -30,7 +30,7 @@ jobs:
 
       # Upload the container as an artifact
       - name: Upload Singularity image
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: singularity-container
           path: my-container.sif
