@@ -1,0 +1,36 @@
+name: Build Singularity Container
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Install Singularity
+      - name: Install Singularity
+        run: |
+          sudo apt update
+          sudo apt install -y singularity-container
+
+      # Build the Singularity container
+      - name: Build Singularity image
+        run: |
+          singularity build my-container.sif singularity.def
+
+      # Upload the container as an artifact
+      - name: Upload Singularity image
+        uses: actions/upload-artifact@v2
+        with:
+          name: singularity-container
+          path: my-container.sif
